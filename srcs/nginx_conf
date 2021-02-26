@@ -1,0 +1,21 @@
+server {
+	listen 80;
+	listen [::]:80;
+	ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
+	server_name _;
+	return 404;
+}
+
+server{
+
+	listen 443 ssl ;
+	listen [::]:443 ssl ;
+	server_name 192.168.99.101;
+	ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
