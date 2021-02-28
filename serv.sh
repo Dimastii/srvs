@@ -13,6 +13,7 @@ minikube start --vm-driver=virtualbox
 eval $(minikube docker-env)
 
 minikube addons enable metallb
+
 kubectl delete deploy nginx-deployment
 kubectl delete svc nginx-svc
 #kubectl delete pods nginx
