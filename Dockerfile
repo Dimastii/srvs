@@ -5,9 +5,10 @@ FROM alpine:3.12
 RUN	apk update
 RUN	apk add nginx openssl openssh supervisor
 
-# add user supervisor
-# RUN adduser 1
-# RUN echo 1
+#
+# RUN adduser -D qqq | user
+# RUN echo "1"
+# RUN echo "1"
 
 COPY	./srcs/nginx_conf /etc/nginx/conf.d/default.conf
 RUN	mkdir /etc/nginx/ssl
