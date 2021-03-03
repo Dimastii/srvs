@@ -19,9 +19,11 @@ minikube addons enable metallb
 #kubectl delete svc nginx-svc
 #kubectl delete pods nginx
 #kubectl get pods
-docker build -t nginx_img .
+docker build -t nginx_img ./nginx\ svc/
+docker build -t sql_img ./sql\ svc/
 kubectl apply -f configmap.yaml
-kubectl apply -f ng.yaml
+kubectl apply -f nginx\ svc/ng.yaml
+kubectl apply -f sql\ svc/sql.yaml
 kubectl get deploy
 minikube dashboard
 ssh-keygen -f "/Users/cveeta/.ssh/known_hosts" -R 192.168.99.240
