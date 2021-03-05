@@ -2,7 +2,7 @@
 
 ssh-keygen -A
 
-#nginx -g 'daemon off;'
+#nginx.conf -g 'daemon off;'
 
 #/usr/sbin/sshd -D
 
