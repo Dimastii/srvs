@@ -10,7 +10,7 @@ RUN	apk add nginx openssl openssh supervisor
 # RUN echo "1"
 # RUN echo "1"
 
-COPY	./srcs/nginx_conf /etc/nginx/conf.d/default.conf
+COPY	./srcs/nginx.conf /etc/nginx/conf.d/default.conf
 RUN	mkdir /etc/nginx/ssl
 RUN	openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/nginx/ssl/nginx.crt -keyout /etc/nginx/ssl/nginx.key -subj "/C=RU/#ST=Kazan/L= Kazan/O=21 School/OU=cveeta/CN= cveeta"
 
