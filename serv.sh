@@ -28,7 +28,7 @@ docker build -t nginx_img ./nginx\ svc/
 docker build -t sql_img ./sql\ svc/
 docker build -t phpadm_img ./phpadm\ svc/
 docker build -t word_img ./word\ svc/
-
+docker build -t ftps_img ./ftps\ svc/
 
 kubectl apply -f configmap.yaml
 
@@ -36,6 +36,7 @@ kubectl apply -f nginx\ svc/ng.yaml
 kubectl apply -f sql\ svc/sql.yaml
 kubectl apply -f phpadm\ svc/phpadm.yaml
 kubectl apply -f word\ svc/word.yaml
+kubectl apply -f ftps\ svc/ftps.yaml
 
 kubectl get deploy
 minikube dashboard
