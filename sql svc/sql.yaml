@@ -11,6 +11,19 @@ spec:
       port: 3306
       targetPort: 3306
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: sql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,3 +48,10 @@ spec:
           ports:
             - containerPort: 3306
               name: sql-port
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysq
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
