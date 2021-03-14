@@ -14,4 +14,7 @@ MYSQL_SCRIPT
 mysql -uroot DB < DB.sql
 
 /etc/init.d/mariadb stop
+
+"/usr/bin/supervisord", "-c", "/etc/supervisord.conf"
+
 exec /usr/bin/mysqld_safe
