@@ -8,12 +8,12 @@
 minikube delete
 
 #mv .docker ./goinfre
+#mv .minikube ./goinfre
 #ln -s ./goinfre/.docker .docker
+#ln -s ./goinfre/.minikube .minikube
 
 VBoxManage hostonlyif remove vboxnet0
 minikube start --vm-driver=virtualbox
-#mv .minikube ./goinfre
-#ln -s ./goinfre/.minikube .minikube
 eval $(minikube docker-env)
 
 minikube addons enable metallb
@@ -30,7 +30,7 @@ docker build -t phpadm_img ./phpadm\ svc/
 docker build -t word_img ./word\ svc/
 docker build -t ftps_img ./ftps\ svc/
 docker build -t grafana_img ./grafana\ svc/
-docker build -t influxdb_img ./influxdb/
+docker build -t influx_img ./influxdb/
 
 kubectl apply -f configmap.yaml
 
