@@ -3,6 +3,9 @@ FROM alpine:3.12.3
 RUN apk update
 RUN apk upgrade
 RUN apk add wget
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+
+
 
 RUN     mkdir -p /run/influxdb
 

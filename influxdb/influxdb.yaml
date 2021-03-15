@@ -3,20 +3,32 @@ kind: Service
 metadata:
   name: influxdb-svc
 spec:
+  type: ClusterIP
   selector:
     app: influxdb
-  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8086
       targetPort: 8086
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: influxdb
+  name: influxdb-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: influxdb
-  labels:
-    app: influxdb
 spec:
   selector:
     matchLabels:
@@ -28,10 +40,21 @@ spec:
       labels:
         app: influxdb
     spec:
+      volumes:
+        - name: influxdb-volume
+          persistentVolumeClaim:
+            claimName: influxdb-pvc
+        - name: dockersock
+          hostPath:
+            path: /var/run/docker.sock
       containers:
-        - image: influxdb_img
-          name: influxdb-container
+        - name: influxdb
+          image: influx_img
           imagePullPolicy: Never
           ports:
             - containerPort: 8086
-              name: influxdb-port
+          volumeMounts:
+            - name: influxdb-volume
+              mountPath: /var/lib/influxdb
+            - name: dockersock
+              mountPath: /var/run/docker.sock
