@@ -11,7 +11,7 @@ GRANT ALL PRIVILEGES ON DB.* TO 'root';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
-mysql -uroot DB < DB.sql
+mysql -uroot DB < dddbbb.sql
 
 /etc/init.d/mariadb stop
 

@@ -19,7 +19,7 @@ metadata:
     app: sql
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
@@ -27,7 +27,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sql
+  name: sql-deployment
   labels:
     app: sql
 spec:
@@ -50,7 +50,7 @@ spec:
               name: sql-port
           volumeMounts:
             - name: mysql-storage
-              mountPath: /var/lib/mysq
+              mountPath: /var/lib/mysql
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:

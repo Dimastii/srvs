@@ -8,9 +8,9 @@ RUN mkdir -p /run/mysqld
 
 COPY srcs/my.cnf /etc/mysql
 
-COPY DB.sql /
+COPY dddbbb.sql /
 
-RUN chmod -R 755 /DB.sql
+RUN chmod -R 755 /dddbbb.sql
 
 RUN chmod 777 /var/lib/mysql
 RUN chown mysql /var/lib/mysql
@@ -19,7 +19,6 @@ COPY	./srcs/init_sql.sh /tmp
 COPY ./telegraf.conf etc/telegraf
 
 VOLUME ["/var/lib/mysql"]
-
 
 RUN	chmod +x /tmp/init_sql.sh
 EXPOSE 3306
